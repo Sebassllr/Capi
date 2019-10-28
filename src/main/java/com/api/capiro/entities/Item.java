@@ -16,9 +16,13 @@ public class Item implements Serializable {
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private List<ItemPedido> itemPedido;
 
-    public Item(String name, List<ItemPedido> itemPedido) {
+    @ManyToMany
+    private List<Recomendacion> recomendacionList;
+
+    public Item(String name, List<ItemPedido> itemPedido, List<Recomendacion> recomendacionList) {
         this.name = name;
         this.itemPedido = itemPedido;
+        this.recomendacionList = recomendacionList;
     }
 
     public Item() {
@@ -46,5 +50,13 @@ public class Item implements Serializable {
 
     public void setItemPedido(List<ItemPedido> itemPedido) {
         this.itemPedido = itemPedido;
+    }
+
+    public List<Recomendacion> getRecomendacionList() {
+        return recomendacionList;
+    }
+
+    public void setRecomendacionList(List<Recomendacion> recomendacionList) {
+        this.recomendacionList = recomendacionList;
     }
 }
